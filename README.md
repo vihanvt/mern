@@ -1,3 +1,6 @@
+
+
+
 # mern
 mern notes before going back to godhead
 
@@ -410,4 +413,231 @@ This guide covers the essential concepts and practical implementations of Expres
 
 Each technology complements the others, enabling developers to build full-stack applications with robust backend services, responsive frontends, and efficient data management.
 
+
+----------------
+Absolutely. Below are code solutions for 10 core beginner React questions — all in one place and exam-ready ✅
+
+
+---
+
+✅ 1. Display “Hello, React!”
+
+function App() {
+  return <h1>Hello, React!</h1>;
+}
+export default App;
+
+
+---
+
+✅ 2. Toggle ON/OFF Button
+
+import React, { useState } from 'react';
+
+function ToggleButton() {
+  const [isOn, setIsOn] = useState(false);
+  return (
+    <button onClick={() => setIsOn(!isOn)}>
+      {isOn ? 'ON' : 'OFF'}
+    </button>
+  );
+}
+
+
+---
+
+✅ 3. Counter with Increase & Decrease
+
+import React, { useState } from 'react';
+
+function Counter() {
+  const [count, setCount] = useState(0);
+  return (
+    <div>
+      <h2>Count: {count}</h2>
+      <button onClick={() => setCount(count + 1)}>+</button>
+      <button onClick={() => setCount(count > 0 ? count - 1 : 0)}>-</button>
+    </div>
+  );
+}
+
+
+---
+
+✅ 4. Live Input Display
+
+import React, { useState } from 'react';
+
+function LiveInput() {
+  const [text, setText] = useState('');
+  return (
+    <div>
+      <input value={text} onChange={(e) => setText(e.target.value)} />
+      <p>You typed: {text}</p>
+    </div>
+  );
+}
+
+
+---
+
+✅ 5. Fetch Data with useEffect
+
+import React, { useEffect, useState } from 'react';
+
+function FetchPosts() {
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/posts')
+      .then(res => res.json())
+      .then(data => setPosts(data.slice(0, 5))); // limit to 5
+  }, []);
+
+  return (
+    <ul>
+      {posts.map(post => (
+        <li key={post.id}>{post.title}</li>
+      ))}
+    </ul>
+  );
+}
+
+
+---
+
+✅ 6. Simple Todo App
+
+import React, { useState } from 'react';
+
+function TodoApp() {
+  const [task, setTask] = useState('');
+  const [todos, setTodos] = useState([]);
+
+  const addTodo = (e) => {
+    e.preventDefault();
+    if (task.trim()) {
+      setTodos([...todos, task]);
+      setTask('');
+    }
+  };
+
+  return (
+    <div>
+      <form onSubmit={addTodo}>
+        <input value={task} onChange={(e) => setTask(e.target.value)} />
+        <button type="submit">Add</button>
+      </form>
+      <ul>
+        {todos.map((t, i) => <li key={i}>{t}</li>)}
+      </ul>
+    </div>
+  );
+}
+
+
+---
+
+✅ 7. Pass Data from Parent to Child
+
+function Parent() {
+  return <Child message="Hello from Parent!" />;
+}
+
+function Child({ message }) {
+  return <p>{message}</p>;
+}
+
+
+---
+
+✅ 8. Show/Hide Paragraph
+
+import React, { useState } from 'react';
+
+function ToggleParagraph() {
+  const [show, setShow] = useState(false);
+  return (
+    <div>
+      <button onClick={() => setShow(!show)}>
+        {show ? 'Hide' : 'Show'} Text
+      </button>
+      {show && <p>This is a hidden paragraph.</p>}
+    </div>
+  );
+}
+
+
+---
+
+✅ 9. Simple Form (Name + Email)
+
+import React, { useState } from 'react';
+
+function SimpleForm() {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log({ name, email });
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input placeholder="Name" value={name} onChange={e => setName(e.target.value)} />
+      <input placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} />
+      <button type="submit">Submit</button>
+    </form>
+  );
+}
+
+
+---
+
+✅ 10. Fetch & Delete Users
+
+import React, { useEffect, useState } from 'react';
+
+function UserList() {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then(res => res.json())
+      .then(data => setUsers(data));
+  }, []);
+
+  const deleteUser = (id) => {
+    setUsers(users.filter(user => user.id !== id));
+  };
+
+  return (
+    <ul>
+      {users.map(user => (
+        <li key={user.id}>
+          {user.name} <button onClick={() => deleteUser(user.id)}>X</button>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+
+---
+
+📦 Usage
+
+You can combine these in a single App.js, or run them as separate components in a React Router or layout component.
+
+Let me know if you want:
+
+A full live-ready React template
+
+Vite-based or Create-React-App setup
+
+Styling with Tailwind or plain CSS
+
+
+Ready to help!
 
